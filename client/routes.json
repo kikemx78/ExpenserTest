@@ -17,6 +17,10 @@
     "view": "./views/about"
   },
   {
+    "path": "/dashboard",
+    "view": "./views/dashboard"
+  },
+  {
     "path": "/tasks/:status(pending|completed)?",
     "view": "./views/home"
   }

@@ -9,6 +9,8 @@
 
 import React, { PropTypes } from 'react';
 import Layout from '../../components/Layout';
+import { connect } from 'react-redux';
+import { testAsync } from '../../actions/';
 
 const title = 'ASP.NET Core Starter Kit';
 const link = 'https://github.com/kriasoft/aspnet-starter-kit';
@@ -21,9 +23,15 @@ class Home extends React.Component {
 
   componentDidMount() {
     document.title = title;
+    
+   const { dispatch } = this.props;
+  dispatch(testAsync('1', 1, 'ghost'));
+  
+
   }
 
   render() {
+    console.log(this.props);
     return (
       <Layout>
         <h1 className="mdl-typography--title">Welcome to {title}!</h1>
@@ -41,4 +49,12 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default connect(
+  (state) => ({
+    galleryData: state.films.galleryData,
+    asyncData: state.films.asyncData,
+    keyword: state.films.keyword,
+    asyncLoading: state.films.asyncLoading,
+    id: state.films.id
+  })
+)(Home);
